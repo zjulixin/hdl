@@ -21,8 +21,6 @@ set_instance_parameter_value sys_hps {EMAC0_PinMuxing} {Unused}
 set_instance_parameter_value sys_hps {EMAC0_Mode} {N/A}
 set_instance_parameter_value sys_hps {EMAC1_PinMuxing} {HPS I/O Set 0}
 set_instance_parameter_value sys_hps {EMAC1_Mode} {RGMII}
-set_instance_parameter_value sys_hps {QSPI_PinMuxing} {HPS I/O Set 0}
-set_instance_parameter_value sys_hps {QSPI_Mode} {1 SS}
 set_instance_parameter_value sys_hps {SDIO_PinMuxing} {HPS I/O Set 0}
 set_instance_parameter_value sys_hps {SDIO_Mode} {4-bit Data}
 set_instance_parameter_value sys_hps {USB0_PinMuxing} {Unused}
@@ -136,7 +134,7 @@ proc ad_dma_interconnect {m_port m_id} {
 # common dma interfaces
 
 add_instance sys_dma_clk clock_source
-add_connection sys_hps.h2f_user0_clock sys_dma_clk.clk_in
+add_connection sys_clk.clk sys_dma_clk.clk_in
 add_connection sys_clk.clk_reset sys_dma_clk.clk_in_reset
 add_connection sys_dma_clk.clk sys_hps.f2h_sdram1_clock
 add_connection sys_dma_clk.clk sys_hps.f2h_sdram2_clock
@@ -211,6 +209,7 @@ set_interface_property sys_spi EXPORT_OF sys_spi.external
 
 ad_cpu_interrupt 0 sys_gpio_bd.irq
 ad_cpu_interrupt 1 sys_spi.irq
+ad_cpu_interrupt 2 sys_gpio_in.irq 
 
 # cpu interconnects
 
