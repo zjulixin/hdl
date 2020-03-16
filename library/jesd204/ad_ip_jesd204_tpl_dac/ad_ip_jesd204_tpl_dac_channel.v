@@ -52,6 +52,7 @@ module ad_ip_jesd204_tpl_dac_channel #(
   input dac_dds_format,
 
   input [3:0] dac_data_sel,
+  input       dac_mask_enable,
 
   input [15:0] dac_dds_scale_0,
   input [15:0] dac_dds_init_0,
@@ -127,7 +128,7 @@ module ad_ip_jesd204_tpl_dac_channel #(
   // dac data select
 
   always @(posedge clk) begin
-    dac_enable <= (dac_data_sel == 4'h2) ? 1'b1 : 1'b0;
+    dac_enable <= (dac_data_sel == 4'h2) ? ~dac_mask_enable : dac_mask_enable;
     case (dac_data_sel)
       4'h7: dac_data <= pn15_data;
       4'h6: dac_data <= pn7_data;
