@@ -44,20 +44,20 @@ module util_axis_fifo_address_generator #(
   input m_axis_aclk,
   input m_axis_aresetn,
   input m_axis_ready,
-  output reg m_axis_valid,
-  output reg m_axis_empty,
+  output reg m_axis_valid = 1'b0,
+  output reg m_axis_empty = 1'b0,
   output [RD_ADDRESS_WIDTH-1:0] m_axis_raddr,
-  output reg [RD_ADDRESS_WIDTH:0] m_axis_level,
+  output reg [RD_ADDRESS_WIDTH:0] m_axis_level = 'b0,
 
   // Write interface - Source side
 
   input s_axis_aclk,
   input s_axis_aresetn,
-  output reg s_axis_ready,
+  output reg s_axis_ready = 1'b0,
   input s_axis_valid,
-  output reg s_axis_full,
+  output reg s_axis_full = 1'b0,
   output [WR_ADDRESS_WIDTH-1:0] s_axis_waddr,
-  output reg [WR_ADDRESS_WIDTH:0] s_axis_room
+  output reg [WR_ADDRESS_WIDTH:0] s_axis_room = 'b0
 );
 
 //------------------------------------------------------------------------------
