@@ -148,7 +148,7 @@ generate if (ASYNC_CLK == 1) begin
   // CDC transfer of the write pointer to the read clock domain
   sync_gray #(
     .DATA_WIDTH(WR_ADDRESS_WIDTH + 1)
-  ) i_waddr_sync (
+  ) i_waddr_sync_gray (
     .in_clk(s_axis_aclk),
     .in_resetn(s_axis_aresetn),
     .out_clk(m_axis_aclk),
@@ -160,7 +160,7 @@ generate if (ASYNC_CLK == 1) begin
   // CDC transfer of the read pointer to the write clock domain
   sync_gray #(
     .DATA_WIDTH(RD_ADDRESS_WIDTH + 1)
-  ) i_raddr_sync (
+  ) i_raddr_sync_gray (
     .in_clk(m_axis_aclk),
     .in_resetn(m_axis_aresetn),
     .out_clk(s_axis_aclk),

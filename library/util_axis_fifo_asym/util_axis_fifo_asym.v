@@ -61,7 +61,7 @@ module util_axis_fifo_asym #(
   output s_axis_full
 );
 
-generate if ((WR_ADDRESS_WIDTH == 0) && (WR_ADDRESS_WIDTH == RD_ADDRESS_WIDTH)) begin /* it's not a real FIFO, just a 2 stage CDC */
+generate if (WR_ADDRESS_WIDTH == 0) begin /* it's not a real FIFO, just a 2 stage CDC */
 
   // Note: In this mode, the write and read interface must have a symmetric
   // aspect ratio.
